@@ -12,8 +12,35 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics import multilabel_confusion_matrix
 
 
+#commented-out code already ran to initialise data text file
+############################################################
+#Create text file with labels
 
-#creates image path and associate class dataframes
+#imPath_df = pd.DataFrame(columns=["path","class"])
+############################################################
+
+#Generate pandas df with paths and labels
+
+# dfInd = 0
+# for i in range(0,len(classes)):
+#     imList = os.listdir(p+"/"+classes[i])
+#     for j in range(0,len(imList)):
+#         imPath_df.loc[dfInd] = [p+ "/" + classes[i] + "/" + str(imList[j])] + [i]
+#         dfInd += 1
+
+############################################################
+
+# For generating text file
+# with open('fish_labels.txt', 'w') as f:
+#     for i in range(0,len(classes)):
+#         imList = os.listdir(p+"/"+classes[i])
+#         for j in range(0,len(imList)):
+#             f.write(p+ "/" + classes[i] + "/" + str(imList[j]) + " " + str(i) + "\n")
+
+############################################################
+
+
+#creates image path and associate class dataframes (For reading text file)
 def create_dataframes(class_text_file):
     full_data = pd.read_csv(class_text_file,delim_whitespace=True, header=None, names = ["imP","label"])
 
