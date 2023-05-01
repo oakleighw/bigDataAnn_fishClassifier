@@ -47,7 +47,7 @@ def create_dataframes(class_text_file):
 
     debug_data = pd.DataFrame(columns=["imP","label"]) #smaller dataset for development
 
-    for i in range(0,5):
+    for i in range(0,6):#length of classes
         new_imPath_df = full_data[full_data["label"]== i].iloc[:100]
         debug_data = pd.concat([debug_data,new_imPath_df])
     
@@ -75,6 +75,11 @@ def create_conf(class_df,gt, preds):
 def path2im(p_array):
     return [resize((skimage.io.imread(x)),(64,64,3)) for x in p_array]
 
+
+#converts list of paths to flattened images
+def path2imflat(p_array):
+    return [resize((skimage.io.imread(x)),(64,64,3)).flatten() for x in p_array]
+
 def process_labels(labels):
     l = tf.keras.utils.to_categorical(labels)
     return l
@@ -82,7 +87,7 @@ def process_labels(labels):
 #get per class confusion matrix and calculate metrics
 def get_metrics(GT,RESULTS):
 
-    mcm = multilabel_confusion_matrix(GT, RESULTS, labels=[0,1,2,3,4])
+    mcm = multilabel_confusion_matrix(GT, RESULTS, labels=[0,1,2,3,4,5])
     Pre = []
     Rec = []
     Spec = []
