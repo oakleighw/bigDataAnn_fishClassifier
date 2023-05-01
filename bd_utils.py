@@ -73,12 +73,12 @@ def create_conf(class_df,gt, preds):
 
 #converts list of paths to images
 def path2im(p_array):
-    return [resize((skimage.io.imread(x)),(64,64,3)) for x in p_array]
+    return [resize((skimage.io.imread(x)),(32,32,3)) for x in p_array]
 
 
 #converts list of paths to flattened images
 def path2imflat(p_array):
-    return [resize((skimage.io.imread(x)),(64,64,3)).flatten() for x in p_array]
+    return [resize((skimage.io.imread(x)),(32,32,3)).flatten() for x in p_array]
 
 def process_labels(labels):
     l = tf.keras.utils.to_categorical(labels)
