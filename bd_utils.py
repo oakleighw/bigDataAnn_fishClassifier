@@ -80,6 +80,7 @@ def path2im(p_array):
 def path2imflat(p_array):
     return [resize((skimage.io.imread(x)),(32,32,3)).flatten() for x in p_array]
 
+#converts numerical categories to one-hot-encodings
 def process_labels(labels):
     l = tf.keras.utils.to_categorical(labels)
     return l
@@ -120,12 +121,6 @@ def get_metrics(GT,RESULTS):
 
 
 
-    #do per class confusion matrix
-
-    #add gridsearch
-    #gradcam?
-    #normalise?
-    #make table
     print("Accuracy:",accuracy)
     print("Average Precision:",avPre)
     print("Average Recall/Sensitivity:",avRec)
